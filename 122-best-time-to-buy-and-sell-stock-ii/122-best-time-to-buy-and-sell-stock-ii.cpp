@@ -5,7 +5,7 @@ public:
         int maxProfit = 0;
         int buy = prices[0];
         
-        for(int i=0; i<n; i++)
+        for(int i=1; i<n; i++)
         {
             if(prices[i]>buy)
             {
