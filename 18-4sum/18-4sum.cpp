@@ -4,31 +4,47 @@ public:
         int n = nums.size();
         sort(nums.begin(),nums.end());
         vector<vector<int>> result;
-        for (int i = 0; i  < n-3; ++i) {
-            if (i &&nums[i] == nums[i - 1]) {
+        
+        for (int i = 0; i  < n-3; ++i)
+        {
+            if (i &&nums[i] == nums[i - 1]) 
+            {
                 continue;
             }
-            for (int j = i + 1; j < n-2; ++j) {
-                if (j != i + 1 && nums[j] == nums[j - 1]) {
+            for (int j = i + 1; j < n-2; ++j) 
+            {
+                if (j != i + 1 && nums[j] == nums[j - 1]) 
+                {
                     continue;
                 }
+                
                 const auto& total = target - nums[i] - nums[j];
-                int left = j + 1, right = n - 1;
-                while (left < right) {
-                    if (nums[left] + nums[right] == total) {
-                        result.push_back({nums[i], nums[j], nums[left], nums[right]});
-                        ++left, --right;
-                        while (left < right && nums[left] == nums[left - 1]) {
-                            ++left;
+                int st = j + 1, en = n - 1;
+                
+                while (st < en) 
+                {
+                    if (nums[st] + nums[en] == total) 
+                    {
+                        result.push_back({nums[i], nums[j], nums[st], nums[en]});
+                        ++st, --en;
+                        while (st < en && nums[st] == nums[st - 1]) 
+                        {
+                            ++st;
                         }
-                        while (left < right && nums[right] == nums[right + 1]) {
-                            --right;
+                        while (st < en && nums[en] == nums[en + 1]) 
+                        {
+                            --en;
                         }
-                    } else {
-                        if (nums[left] + nums[right] > total) {
-                            --right;
-                        } else {
-                            ++left;
+                    } 
+                    else 
+                    {
+                        if (nums[st] + nums[en] > total) 
+                        {
+                            --en;
+                        } 
+                        else 
+                        {
+                            ++st;
                         }
                     }
                 }
