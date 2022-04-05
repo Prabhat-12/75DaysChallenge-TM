@@ -1,13 +1,18 @@
 class Solution {
 public:
     int numPairsDivisibleBy60(vector<int>& time) {
-        vector<int> c(60);
-        int res = 0;
-        for (int t : time) {
-            res += c[(600 - t) % 60];
-            c[t % 60] += 1;
+        int result = 0;
+        map<int,int> m;
+        int size = time.size();
+        for (int i = 0; i < size; i++) {
+            int n = time[i]%60;
+            if (n == 0) {
+                result+= m[0];
+            } else {
+                result += m[60-n];
+            }
+            m[n]++;
         }
-        return res;
-    
+        return result;
     }
 };
